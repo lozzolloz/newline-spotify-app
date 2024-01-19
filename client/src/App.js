@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useLocation,
-} from 'react-router-dom';
-import { accessToken, logout, getCurrentUserProfile } from './spotify';
-import { catchErrors } from './utils';
-import { GlobalStyle } from './styles';
-import styled from 'styled-components/macro';
+} from "react-router-dom";
+import { accessToken, logout, getCurrentUserProfile } from "./spotify";
+import { catchErrors } from "./utils";
+import styled from "styled-components/macro";
+import { GlobalStyle } from "./styles";
+
+
 
 const StyledLoginButton = styled.a`
   background-color: var(--green);
   color: var(--white);
   padding: 10px 20px;
-  margin: 20px;
+  margin: 20px auto;
   border-radius: 30px;
   display: inline-block;
 `;
@@ -49,10 +51,12 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-
       <header className="App-header">
         {!token ? (
-          <StyledLoginButton href="http://localhost:8888/login">
+          <StyledLoginButton
+            className="App-link"
+            href="http://localhost:8888/login"
+          >
             Log in to Spotify
           </StyledLoginButton>
         ) : (
@@ -81,7 +85,7 @@ function App() {
                       <h1>{profile.display_name}</h1>
                       <p>{profile.followers.total} Followers</p>
                       {profile.images.length && profile.images[0].url && (
-                        <img src={profile.images[0].url} alt="Avatar"/>
+                        <img src={profile.images[0].url} alt="Avatar" />
                       )}
                     </div>
                   )}
